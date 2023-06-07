@@ -19,12 +19,7 @@ CREATE TABLE course (
 CREATE TABLE student (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   first_name VARCHAR(30) NOT NULL,
-  last_name VARCHAR(30) NOT NULL,
-  course_id INT,
-  grade_id INT,
-  
-  FOREIGN KEY (course_id) REFERENCES course(id) ON DELETE CASCADE,
-  FOREIGN KEY (grade_id) REFERENCES grade(id) ON DELETE CASCADE
+  last_name VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE grades (
@@ -32,9 +27,18 @@ CREATE TABLE grades (
   value VARCHAR(30) NOT NULL,
   student_id INT,
   course_id INT,
-  department_id INT,
-
+  
   FOREIGN KEY (student_id) REFERENCES student(id) ON DELETE CASCADE,
-  FOREIGN KEY (course_id) REFERENCES role(id) ON DELETE CASCADE,
-  FOREIGN KEY (department_id) REFERENCES department(id) ON DELETE CASCADE
+  FOREIGN KEY (course_id) REFERENCES course(id) ON DELETE CASCADE
+);
+
+CREATE TABLE enrollment (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  student_id INT,
+  course_id INT,
+  grade_id INT,
+  
+  FOREIGN KEY (student_id) REFERENCES student(id) ON DELETE CASCADE,
+  FOREIGN KEY (course_id) REFERENCES course(id) ON DELETE CASCADE,
+  FOREIGN KEY (grade_id) REFERENCES grades(id) ON DELETE CASCADE
 );

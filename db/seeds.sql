@@ -11,19 +11,37 @@ INSERT INTO course (course_name, department_id) VALUES
   ('Mechanics', 3);
 
 -- Insert students
-INSERT INTO student (first_name, last_name, course_id, grade_id) VALUES
-  ('John', 'Doe', 1, 1),
-  ('Jane', 'Smith', 2, 2),
-  ('Michael', 'Johnson', 3, 3),
-  ('Emily', 'Brown', 1, 2),
-  ('David', 'Taylor', 2, 3),
-  ('Olivia', 'Miller', 3, 1);
+INSERT INTO student (first_name, last_name) VALUES
+  ('John', 'Doe'),
+  ('Jane', 'Smith'),
+  ('Michael', 'Johnson'),
+  ('Emily', 'Brown'),
+  ('David', 'Taylor'),
+  ('Olivia', 'Miller'),
+  ('Sophia', 'Anderson');
 
 -- Insert grades
-INSERT INTO grades (value, student_id, course_id, department_id) VALUES
-  ('A', 1, 1, 1),
-  ('B+', 2, 2, 2),
-  ('A-', 3, 3, 3),
-  ('B', 4, 1, 1),
-  ('A', 5, 2, 2),
-  ('B', 6, 3, 3);
+INSERT INTO grades (value, student_id, course_id) VALUES
+  ('A', 1, 1),
+  ('B+', 1, 2),
+  ('A-', 2, 1),
+  ('B', 2, 3),
+  ('A', 3, 2),
+  ('B', 4, 1),
+  ('B-', 5, 2),
+  ('C', 6, 3),
+  ('A', 7, 1),
+  ('A+', 7, 2);
+
+-- Insert enrollment
+INSERT INTO enrollment (student_id, course_id, grade_id) VALUES
+  (1, 1, 1),
+  (1, 2, 2),
+  (2, 1, 3),
+  (2, 3, 4),
+  (3, 2, 5),
+  (4, 1, 6),
+  (5, 2, 7),
+  (6, 3, 8),
+  (7, 1, 9),
+  (7, 2, 10);
