@@ -1,13 +1,59 @@
+const Course = require('./Course');
+const Department = require('./Department');
+const Enrollment = require('./Enrollment');
+const Grades = require('./Grades');
+const Student = require('./Student');
 const User = require('./User');
-const Project = require('./Project');
 
-User.hasMany(Project, {
-  foreignKey: 'user_id',
-  onDelete: 'CASCADE'
+// Define associations
+Department.hasMany(Course, {
+  foreignKey: 'department_id',
+  onDelete: 'CASCADE',
+});
+Course.belongsTo(Department, {
+  foreignKey: 'department_id',
+  onDelete: 'CASCADE',
 });
 
-Project.belongsTo(User, {
-  foreignKey: 'user_id'
+Course.belongsToMany(Student, {
+  through: Enrollment,
+  foreignKey: 'course_id',
+  onDelete: 'CASCADE',
+});
+Student.belongsToMany(Course, {
+  through: Enrollment,
+  foreignKey: 'student_id',
+  onDelete: 'CASCADE',
 });
 
-module.exports = { User, Project };
+Course.belongsToMany(Grades, {
+  through: Enrollment,
+  foreignKey: 'course_id',
+  onDelete: 'CASCADE',
+});
+Grades.belongsToMany(Course, {
+  through: Enrollment,
+  foreignKey: 'course_id',
+  onDelete: 'CASCADE',
+});
+
+Student.belongsToMany(Grades, {
+  through: Enrollment,
+  foreignKey: 'student_id',
+  onDelete: 'CASCADE',
+});
+Grades.belongsToMany(Student, {
+  through: Enrollment,
+  foreignKey: 'student_id',
+  onDelete: 'CASCADE',
+});
+
+module.exports = {
+  Course,
+  Department,
+  Enrollment,
+  Grades,
+  Student,
+  User
+};
+
