@@ -1,25 +1,35 @@
+const seedDepartments = require('./department-seeds');
+const seedCourses = require('./course-seeds');
+const seedGrades = require('./grades-seeds');
+const seedStudents = require('./student-seeds');
+const seedEnrollments = require('./enrollment-seeds');
+const seedUsers = require('./user-seeds');
+
 const sequelize = require('../config/connection');
-const { User, Project } = require('../models');
 
-const userData = require('./userData.json');
-const projectData = require('./projectData.json');
-
-const seedDatabase = async () => {
+const seedAll = async () => {
   await sequelize.sync({ force: true });
+  console.log('\n----- DATABASE SYNCED -----\n');
 
-  const users = await User.bulkCreate(userData, {
-    individualHooks: true,
-    returning: true,
-  });
+  await seedDepartments();
+  console.log('\n----- DEPARTMENTS SEEDED -----\n');
 
-  for (const project of projectData) {
-    await Project.create({
-      ...project,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    });
-  }
+  await seedCourses();
+  console.log('\n----- COURSES SEEDED -----\n');
+
+  await seedStudents();
+  console.log('\n----- STUDENTS SEEDED -----\n');
+
+  await seedGrades();
+  console.log('\n----- GRADES SEEDED -----\n');
+
+  await seedEnrollments();
+  console.log('\n----- ENROLLMENTS SEEDED -----\n');
+
+  await seedUsers();
+  console.log('\n----- USERS SEEDED -----\n');
 
   process.exit(0);
 };
 
-seedDatabase();
+seedAll();
