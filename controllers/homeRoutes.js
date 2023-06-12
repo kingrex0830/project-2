@@ -1,25 +1,25 @@
 const router = require('express').Router();
-const { Project, User } = require('../models');
+const { Department, Course, Enrollment, Grades, Student } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
-    const projectData = await Project.findAll({
+    // Get all courses and JOIN with department data
+    const courseData = await Course.findAll({
       include: [
         {
-          model: User,
+          model: Department,
           attributes: ['name'],
         },
       ],
     });
 
     // Serialize data so the template can read it
-    const projects = projectData.map((project) => project.get({ plain: true }));
+    const courses = courseData.map((course) => course.get({ plain: true }));
 
     // Pass serialized data and session flag into template
     res.render('homepage', { 
-      projects, 
+      courses, 
       logged_in: req.session.logged_in 
     });
   } catch (err) {
@@ -27,21 +27,21 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.get('/project/:id', async (req, res) => {
+router.get('/course/:id', async (req, res) => {
   try {
-    const projectData = await Project.findByPk(req.params.id, {
+    const courseData = await Course.findByPk(req.params.id, {
       include: [
         {
-          model: User,
+          model: Department,
           attributes: ['name'],
         },
       ],
     });
 
-    const project = projectData.get({ plain: true });
+    const course = courseData.get({ plain: true });
 
-    res.render('project', {
-      ...project,
+    res.render('course', {
+      ...course,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -52,16 +52,16 @@ router.get('/project/:id', async (req, res) => {
 // Use withAuth middleware to prevent access to route
 router.get('/profile', withAuth, async (req, res) => {
   try {
-    // Find the logged in user based on the session ID
-    const userData = await User.findByPk(req.session.user_id, {
+    // Find the logged in student based on the session ID
+    const studentData = await Student.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Project }],
+      include: [{ model: Enrollment }],
     });
 
-    const user = userData.get({ plain: true });
+    const student = studentData.get({ plain: true });
 
     res.render('profile', {
-      ...user,
+      ...student,
       logged_in: true
     });
   } catch (err) {
