@@ -25,6 +25,7 @@ router.get('/dashboard', async (req, res) => {
     res.render('dashboard', { 
       courses, 
       // logged_in: req.session.logged_in 
+
     });
   } catch (err) {
     res.status(500).json(err);
@@ -140,6 +141,13 @@ router.get('/student', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+router.get('/courselist', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  // get courses from database and send to courselist.handlebars
+
+  res.render('courselist.handlebars');
 });
 
 router.get('/login', (req, res) => {
