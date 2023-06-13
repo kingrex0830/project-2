@@ -18,9 +18,9 @@ router.get('/', async (req, res) => {
     const courses = courseData.map((course) => course.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('homepage', { 
-      courses, 
-      logged_in: req.session.logged_in 
+    res.render('homepage', {
+      courses,
+      logged_in: req.session.logged_in
     });
   } catch (err) {
     res.status(500).json(err);
@@ -67,6 +67,13 @@ router.get('/profile', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+router.get('/courselist', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  // get courses from database and send to courselist.handlebars
+
+  res.render('courselist.handlebars');
 });
 
 router.get('/login', (req, res) => {
