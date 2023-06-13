@@ -1,0 +1,32 @@
+<h1>Hello there...</h1>
+
+<p> Our courses are: {{courses}}</p>
+
+  {{#if courses.length}}
+  <div class="col-md-6 project-list">
+    <h3>Current Courses:</h3>
+
+    {{#each courses as |course|}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/course/{{course.id}}">{{course.course_name}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-sm btn-danger" data-id="{{course.id}}">DELETE</button>
+      </div>
+
+      <div> {{course.description}} </div>
+
+      <hr>
+
+       <div> {{course.department_id}} </div>
+
+       <hr>
+       <div> {{course.department.department_name}} </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+
+
+<script src="/js/courses.js"></script>
