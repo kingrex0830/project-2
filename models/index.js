@@ -26,6 +26,11 @@ Student.belongsToMany(Course, {
   onDelete: 'CASCADE',
 });
 
+
+
+
+// Problem here in associations (using same foreignKey????????)
+
 Course.belongsToMany(Grades, {
   through: Enrollment,
   foreignKey: 'course_id',
