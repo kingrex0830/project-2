@@ -19,14 +19,10 @@
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
         <a href="/api/users/signup">Sign Up</a> 
-        <a href="/about"> About</a>
-        <a href="'/contact"> Contact</a>
         <button class="no-button" id="logout">logout</button>
         {{else}}
         <a href="/signup">Sign Up</a>
         <a href="/login">Login</a>
-        <a href="/about"> About</a>
-        <a href="/contact">Contact</a>
         {{/if}}
       </nav>
     </header>
