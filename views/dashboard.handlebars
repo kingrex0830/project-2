@@ -25,7 +25,7 @@
 
 <div>
   {{#if departments.length}}
-    <h3>Current Users:</h3>
+    <h3>Current Departments:</h3>
     <div class="col-md-6 project-list">
       {{#each departments}}
 
@@ -76,20 +76,7 @@
         <p>This grade belongs to student: <strong>{{grade.student.first_name}} {{grade.student.last_name}}</strong></p>
         <p>The student got this grade in this course: <strong>{{grade.course.course_name}}</strong></p>
         <p>The course's description is as follows: <strong>{{grade.course.description}}</strong></p>
-
-
-        <p>This course belongs to this department: <strong>{{grade.course.Department.department_name}}</strong></p>
-
-
-        {{!-- example of nested queries! EASY--> DOES NOT WORK... IRONICALLY --}}
-        {{#if courses.length}}
-            {{#each courses as |course| }}
-
-              <p>The course belongs to this department: <strong>{{course.id}}</strong></p>
-        
-            {{/each}}
-          </div>
-        {{/if}}
+        <p>This course belongs to this department: <strong>{{grade.course.department.department_name}}</strong></p>
 
         <p>------------------- Line Here ------------------- </p>
 
