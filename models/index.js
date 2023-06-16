@@ -12,46 +12,35 @@ Department.hasMany(Course, {
 });
 Course.belongsTo(Department, {
   foreignKey: 'department_id',
-  onDelete: 'CASCADE',
 });
 
 Course.belongsToMany(Student, {
   through: Enrollment,
   foreignKey: 'course_id',
-  onDelete: 'CASCADE',
+  otherKey: 'student_id',
 });
 Student.belongsToMany(Course, {
   through: Enrollment,
   foreignKey: 'student_id',
-  onDelete: 'CASCADE',
+  otherKey: 'course_id',
 });
 
-
-
-
-// Problem here in associations (using same foreignKey????????)
-
-Course.belongsToMany(Grades, {
-  through: Enrollment,
+Course.hasMany(Grades, {
   foreignKey: 'course_id',
   onDelete: 'CASCADE',
 });
-Grades.belongsToMany(Course, {
-  through: Enrollment,
+Grades.belongsTo(Course, {
   foreignKey: 'course_id',
-  onDelete: 'CASCADE',
 });
 
-Student.belongsToMany(Grades, {
-  through: Enrollment,
+Student.hasMany(Grades, {
   foreignKey: 'student_id',
   onDelete: 'CASCADE',
 });
-Grades.belongsToMany(Student, {
-  through: Enrollment,
+Grades.belongsTo(Student, {
   foreignKey: 'student_id',
-  onDelete: 'CASCADE',
 });
+
 
 module.exports = {
   Course,
@@ -62,3 +51,4 @@ module.exports = {
   User
 };
 
+// Checkpoint!!!!! !!!!!!

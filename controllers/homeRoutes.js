@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Department, Course, Enrollment, Grades, Student } = require('../models');
+const { Department, Course, Enrollment, Grades, Student, User } = require('../models');
 const withAuth = require('../utils/auth');
 
 // default url
@@ -23,39 +23,34 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-// dashboard url: page displays specified model data!
+// dashboard url: page displays specified model data! ((ADD WITH AUTHINTICATION!!!!!))
 router.get('/dashboard', async (req, res) => {
   try {
 
-    // // if not logged in, go to the login page!
-    // if (!req.session.logged_in) {
-    //   res.redirect('/login');
-    //   return;
-    // }
+
+    const userData = await User.findAll();
+    const users = userData.map((user) => user.get({ plain: true }));
+    console.log(users);
 
 
-    
-        
-    // Extract data from the Course model
+    const departmentData = await Department.findAll();
+    const departments = departmentData.map((department) => department.get({ plain: true }));
+    console.log(departments);
+
+
     const studentData = await Student.findAll();
     const students = studentData.map((student) => student.get({ plain: true }));
     console.log(students);
 
-
-
-    // Extract data from the Course model
     const courseData = await Course.findAll({
-      include: [
-        {
-          model: Department,
-          attributes: ['department_name'],
-        },
-      ],
+      include: {
+        model: Department,
+        attributes: ['department_name'],
+      },
     });
     const courses = courseData.map((course) => course.get({ plain: true }));
     console.log(courses);
 
-    // Extract data from the Grades model
     const gradesData = await Grades.findAll({
       include: [
         {
@@ -65,47 +60,118 @@ router.get('/dashboard', async (req, res) => {
         {
           model: Course,
           attributes: ['course_name', 'description'],
+          include: {
+            model: Department,
+            attributes: ['department_name'],
+          },
         },
       ],
     });
     const grades = gradesData.map((grade) => grade.get({ plain: true }));
-
     console.log(grades);
 
-    // // Extract data from the Enrollment model
-    // const enrollmentData = await Enrollment.findAll(
-    //   {
-    //   include: [
-    //     {
-    //       model: Student,
-    //       attributes: ['first_name', 'last_name'],
-    //     },
-    //     {
-    //       model: Course,
-    //       attributes: ['course_name', 'description'],
-    //     },
-    //     {
-    //       model: Grades,
-    //       attributes: ['value'],
-    //     },
-    //   ],
-    // }
-    // );
-    // const enrollment = enrollmentData.map((enroll) => enroll.get({ plain: true }));
-    // console.log(enrollment);
-
-    // Pass serialized data and session flag into template
     res.render('dashboard', {
       courses,
       students,
+      departments,
       grades,
-      // enrollment,
+      users,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+
+
+
+
+// the diff is that this has Enrollment, which is not needed??? Yea...
+// router.get('/dashboard', async (req, res) => {
+//   try {
+
+//     // // if not logged in, go to the login page!
+//     // if (!req.session.logged_in) {
+//     //   res.redirect('/login');
+//     //   return;
+//     // }
+
+
+    
+        
+//     // Extract data from the Course model
+//     const studentData = await Student.findAll();
+//     const students = studentData.map((student) => student.get({ plain: true }));
+//     console.log(students);
+
+
+
+//     // Extract data from the Course model
+//     const courseData = await Course.findAll({
+//       include: [
+//         {
+//           model: Department,
+//           attributes: ['department_name'],
+//         },
+//       ],
+//     });
+//     const courses = courseData.map((course) => course.get({ plain: true }));
+//     console.log(courses);
+
+//     // Extract data from the Grades model
+//     const gradesData = await Grades.findAll({
+//       include: [
+//         {
+//           model: Student,
+//           attributes: ['first_name', 'last_name'],
+//           through: { model: Enrollment },
+//         },
+//         {
+//           model: Course,
+//           attributes: ['course_name', 'description'],
+//           through: { model: Enrollment },
+//         },
+//       ],
+//     });
+//     const grades = gradesData.map((grade) => grade.get({ plain: true }));
+
+//     console.log(grades);
+
+//     // // Extract data from the Enrollment model
+//     // const enrollmentData = await Enrollment.findAll(
+//     //   {
+//     //   include: [
+//     //     {
+//     //       model: Student,
+//     //       attributes: ['first_name', 'last_name'],
+//     //     },
+//     //     {
+//     //       model: Course,
+//     //       attributes: ['course_name', 'description'],
+//     //     },
+//     //     {
+//     //       model: Grades,
+//     //       attributes: ['value'],
+//     //     },
+//     //   ],
+//     // }
+//     // );
+//     // const enrollment = enrollmentData.map((enroll) => enroll.get({ plain: true }));
+//     // console.log(enrollment);
+
+//     // Pass serialized data and session flag into template
+//     res.render('dashboard', {
+//       courses,
+//       students,
+//       grades,
+//       // enrollment,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
 
 router.get('/course/:id', async (req, res) => {
   try {

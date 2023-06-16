@@ -1,66 +1,113 @@
-<h1>Hello there...</h1>
+<h1>Hello there!</h1>
+<h5>This is an example of all the data you may ever need in this project. Use this as you will...</h5>
+<h6>Note: You are able to switch routes by implementing links to those specific routes where u may apply GET/GET(:id)/POST/PULL/DELL</h6>
 
 <div>
-
-  {{#if enrollment.length}}
-    <h3>Current students:</h3>
+  {{#if users.length}}
+    <h3>Current Users:</h3>
     <div class="col-md-6 project-list">
-      {{#each enrollment}}
+      {{#each users}}
 
-        <div> student id: {{this.id}} </div>
-        <div>student name: {{this.student_id}} {{this.course_id}} {{this.grades_id}}</div>
+        <div>User id: <strong>{{this.id}} </strong></div>
+        <div>User name: <strong> {{this.name}} </strong></div>
+        <div>User email: <strong> {{this.email}} </strong></div>
         <br>
 
+        <p>------------------- Line Here ------------------- </p>
+
       {{/each}}
     </div>
   {{/if}}
 
-<h1> Hello there 2 2 2 <h1>
+  <br>
+</div>
 
 
-  {{#if grades.length}}
-    <h3>Current Grades:</h3>
+<div>
+  {{#if departments.length}}
+    <h3>Current Users:</h3>
     <div class="col-md-6 project-list">
-      {{#each grades}}
+      {{#each departments}}
 
-        <div>{{this.value}}</div>
-          <br>
-        <div>{{this.student_id}}</div>
-          <br>
-        <div>{{this.course_id}}</div>
-          <br>  <br>
+        <div>Department id: <strong>{{this.id}} </strong></div>
+        <div>Department name: <strong> {{this.department_name}} </strong></div>
+        <br>
 
-        <p>does not work here:</p>
+        <p>------------------- Line Here ------------------- </p>
 
-        {{!-- not working.... --}}
-        <div>{{this.student.first_name}}</div>
-        <div>{{this.student.last_name}}</div>
-        <div>{{this.course.course_name}}</div>
-        <div>{{this.course.description}}</div>
-
-        <p>ends here</p>
-        
       {{/each}}
     </div>
   {{/if}}
 
+  <br>
+</div>
 
-  <br>  <br>  <br>  <br>  <br>  <br>
-
+<div>
+  {{!-- This is one way of using the notations (the other is down below): Here, we use the "this" keyword! --}}
   {{#if students.length}}
     <h3>Current students:</h3>
     <div class="col-md-6 project-list">
       {{#each students}}
 
-        <div> student id: {{this.id}} </div>
-        <div>student name: {{this.first_name}} {{this.last_name}}</div>
+        <div> Student id: <strong>{{this.id}} </strong></div>
+        <div>Student name: <strong> {{this.first_name}} {{this.last_name}} </strong></div>
         <br>
+
+        <p>------------------- Line Here ------------------- </p>
 
       {{/each}}
     </div>
   {{/if}}
 
-  {{!-- CheckPoint!!! --}}h=
+  <br>
+</div>
+
+<div>
+  {{!-- This is the second method where we do NOT use the "this" keyword! --}}
+  {{#if grades.length}}
+    <h3>Current Grades:</h3>
+    <div class="col-md-6 project-list">
+      {{#each grades as |grade| }}
+      
+        <p>Grade id: <strong>{{grade.id}}</strong></p>
+        <p>Student id: <strong>{{grade.student_id}}</strong></p>
+        <p>course id: <strong>{{grade.course_id}}</strong></p>
+        <p>Grade value: <strong>{{grade.value}}</strong></p>
+        <p>This grade belongs to student: <strong>{{grade.student.first_name}} {{grade.student.last_name}}</strong></p>
+        <p>The student got this grade in this course: <strong>{{grade.course.course_name}}</strong></p>
+        <p>The course's description is as follows: <strong>{{grade.course.description}}</strong></p>
+
+
+        <p>This course belongs to this department: <strong>{{grade.course.Department.department_name}}</strong></p>
+
+
+        {{!-- example of nested queries! EASY--> DOES NOT WORK... IRONICALLY --}}
+        {{#if courses.length}}
+            {{#each courses as |course| }}
+
+              <p>The course belongs to this department: <strong>{{course.id}}</strong></p>
+        
+            {{/each}}
+          </div>
+        {{/if}}
+
+        <p>------------------- Line Here ------------------- </p>
+
+      {{/each}}
+    
+  {{/if}}
+  
+  </div>
+
+  <br> <br>
+
+</div>
+
+{{!-- More DATA --}}
+{{!-- Note: Here we are using data in a link to send users into a diff. directory! "/course/id" --}}
+
+
+<div>
 
   {{#if courses.length}}
     <div class="col-md-6 project-list">
@@ -72,48 +119,21 @@
             <h4><a href="/course/{{this.id}}">{{this.course_name}}</a></h4>
           </div>
           <div class="col-md-4">
+            {{!-- btn does not work yet! --}}
             <button class="btn btn-sm btn-danger" data-id="{{this.id}}">DELETE</button>
           </div>
-
-          <div>{{this.description}}</div>
-
-          <hr>
-          <div>{{this.department_id}}</div>
-
-          <hr>
-          <div>{{this.department.department_name}}</div>
-          
         </div>
 
-        {{!-- <div>
-          <div>{{enrollment.Student.first_name}}</div>
-          <div>{{enrollment.Student.last_name}}</div>
-          <div>{{enrollment.Course.course_name}}</div>
-          <div>{{enrollment.Course.description}}</div>
-          <div>{{enrollment.Grades.value}}</div>
-        </div> --}}
+          <p>Course description: <strong>{{this.description}}</strong></p>
+
+          <p>This course belongs to this department: <strong>{{this.department.department_name}}</strong></p>
+
+          <p>This department's id is: <strong>{{this.department_id}}</strong></p>
+
+        <p>------------------- Line Here ------------------- </p>
+
       {{/each}}
     </div>
   {{/if}}
-
-
-    <br><br><br>
-
-    {{#if grades.length}}
-    <h3>Current Grades:</h3>
-    <div class="col-md-6 project-list">
-      {{#each grades as |grade| }}
-        <div>{{grade.value}}</div>
-        <div>{{grade.student.first_name}}</div>
-        <div>{{grade.student.last_name}}</div>
-        <div>{{grade.course.course_name}}</div>
-        <div>{{grade.course.description}}</div>
-      {{/each}}
-    </div>
-  {{/if}}
-
 
 </div>
-
-
-
