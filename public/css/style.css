@@ -5,9 +5,9 @@
 --navFont: black (0, 0%, 24%);
 }
 
-header, .project:not(:last-child) {
+/* header, .project:not(:last-child) {
   border-bottom: 1px solid #ccc;
-}
+} */
 
 .no-button {
   background: none;
@@ -39,20 +39,22 @@ h2, h3 {
   font-family: var(--ff-Primary);
 }
 
+/* header/nav bar */
 .Primary-Header {
   overflow: hidden;  
   font-size: 1.3rem;
   display: flex;
   justify-content: space-between;
+  background-color: antiquewhite;
 
 }
 
-.Logo-Main {
-  font-size: 3.5rem;
+.Logo-main {
+  font-size: 2rem;
   color: var(--navFont);
   margin-inline: 10px;
   text-decoration: none;
-
+  float: left;
 }
 
 
@@ -61,21 +63,30 @@ h2, h3 {
   font-weight: 400; 
   text-align: right;
   display: inline;
-  padding-left:1075px;
+  background-color: antiquewhite;
 }
 
 .Primary-Navbar-Link {
  
   text-decoration: none;
   color: var(--navFont  );
-  margin-inline: 5px;
+  /* margin-inline: 5px; */
+  bottom: 30px;
+  justify-content: space-between;
 }
 
+.primary-container {
+  float: right;
+  margin-inline: 10px;
+  margin-top: 5px;
+}
+
+/* main body of page */
 .loginbox {
     position: absolute;
     color:lightblue;
     top: 50%;
-    left: 42%;
+    left: 41%;
     text-align: center;
     align-items: center;
   
@@ -90,8 +101,9 @@ h2, h3 {
     padding: 0;
   }
 
+/* Footer */
   .Primary-Footer {
-    position: fixed;
+    /* position: absolute; */
     bottom: 0;
     right: 0;
     padding: 10px;

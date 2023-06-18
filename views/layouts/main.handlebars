@@ -8,29 +8,41 @@
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
-
+<main>
 <body>
+
     <header class="Primary-Header">
       <div class="Primary-Header-Content">
         <a class="Logo-main" href="/"><strong>Student Manager</strong></a>
+      </div>
+      <div class="primary-container"
       <nav class="Primary-Navbar" Aria-Expanded="false" Data-Visible="false">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
         <a href="/api/users/signup">Sign Up</a> 
         <button class="no-button" id="logout">logout</button>
         {{else}}
-        <a href="/signup text-align:right" class="Primary-Navbar-Link">Sign Up</a>
+        <a href="/signup" class="Primary-Navbar-Link">Sign Up</a>
         <a href="/login" class="Primary-Navbar-Link">Login</a>
         {{/if}}
       </nav>
+      </div>
+      </body>
     </header>
-    <main class="container container-fluid mt-5">
+
+   <div class="background-image"></div>
+
+    
       <!-- Render the sub layout -->
       {{{ body }}}
     </main>
-    <footer>
-      
-    </footer>
+<footer class="Primary-Footer">
+  <div class="footer-row">
+              <a href="#" class="footer-link">About Us</a>           
+              <a href="#" class="footer-link">Contact Us</a>            
+              <a href="#" class="footer-link">FAQ</a>                
+  </div>
+<footer>
   </div>
 
   <!-- Render script for logged in users only -->

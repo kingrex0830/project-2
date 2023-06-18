@@ -24,9 +24,9 @@ body {
 /**
  * Render the `main` element consistently in IE.
  */
-main {
+/* main {
   display: block;
-}
+} */
 
 /**
  * Correct the font size and margin on `h1` elements within `section` and
@@ -534,9 +534,9 @@ a:hover {
   margin-top: 1.375rem;
 }
 
-.mt-5 {
+/* .mt-5 {
   margin-top: 1.625rem;
-}
+} */
 
 .mt-auto {
   margin-top: auto;
@@ -1164,16 +1164,16 @@ form [type='radio'] {
   display: inline-block;
 }
 
-.container {
+/* .container {
   width: 85%;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 
-.container.container-fluid {
+/* .container.container-fluid {
   width: 92%;
-}
+} */
 
 /* FLEX CONTENT */
 .flex-row {
