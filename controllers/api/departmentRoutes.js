@@ -75,5 +75,29 @@ router.delete('/:id', withAuth, async (req, res) => {
   }
 });
 
+
+// Added features:
+// Get the department ID based on the department name
+router.get('/name/:name', async (req, res) => {
+  try {
+    const department = await Department.findOne({
+      where: {
+        department_name: req.params.name,
+      },
+      attributes: ['id'],
+    });
+
+    if (!department) {
+      res.status(404).json({ message: 'No department found with this name!' });
+      return;
+    }
+
+    res.status(200).json(department);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+
 module.exports = router;
 

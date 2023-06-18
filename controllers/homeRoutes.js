@@ -30,17 +30,14 @@ router.get('/dashboard', async (req, res) => {
 
     const userData = await User.findAll();
     const users = userData.map((user) => user.get({ plain: true }));
-    console.log(users);
 
 
     const departmentData = await Department.findAll();
     const departments = departmentData.map((department) => department.get({ plain: true }));
-    console.log(departments);
 
 
     const studentData = await Student.findAll();
     const students = studentData.map((student) => student.get({ plain: true }));
-    console.log(students);
 
     const courseData = await Course.findAll({
       include: {
@@ -49,7 +46,6 @@ router.get('/dashboard', async (req, res) => {
       },
     });
     const courses = courseData.map((course) => course.get({ plain: true }));
-    console.log(courses);
 
     const gradesData = await Grades.findAll({
       include: [
@@ -68,7 +64,6 @@ router.get('/dashboard', async (req, res) => {
       ],
     });
     const grades = gradesData.map((grade) => grade.get({ plain: true }));
-    console.log(grades);
 
     res.render('dashboard', {
       courses,

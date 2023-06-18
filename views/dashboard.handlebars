@@ -103,11 +103,11 @@
       {{#each courses}}
         <div class="row mb-2">
           <div class="col-md-8">
+
             <h4><a href="/course/{{this.id}}">{{this.course_name}}</a></h4>
           </div>
           <div class="col-md-4">
-            {{!-- btn does not work yet! --}}
-            <button class="btn btn-sm btn-danger" data-id="{{this.id}}">DELETE</button>
+            <button class="btn btn-sm btn-danger delBtn" data-id="{{this.id}}">DELETE</button>
           </div>
         </div>
 
@@ -123,4 +123,35 @@
     </div>
   {{/if}}
 
+  <div>
+    <h3>Add new course:</h3>
+
+    <h6>What is the name of the new course you wish to add?</h6>
+    <input id="new-course-name" type="text" placeholder="New course Name..."></input>
+    <br>
+
+    <h6>Please describe this new course:</h6>
+    <input id="new-course-description" type="text" placeholder="New course description..."></input>
+    <br>
+
+    <h6>To which department does this new course belong?</h6>
+    <select id="new-course-department">
+      <option value="">Select a department</option>
+    </select>
+    <br>
+    <br>
+
+
+    <button id="add-course-btn">Add Course</button>
+    <br> <br>
+  </div>
+
+
+
+
+
+  <script src="./js/dashboard.js"></script>
+
 </div>
+
+
