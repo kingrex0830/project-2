@@ -2,6 +2,7 @@
 
 :root {
 --ff-Primary: Roboto Condensed, sans-serif;
+--navFont: black (0, 0%, 24%);
 }
 
 header, .project:not(:last-child) {
@@ -29,13 +30,84 @@ header, .project:not(:last-child) {
   margin-left: -5px;
 }
 
-.aboutus img{
-  height: 180px;
-  width: 190px;
+h2 img{
+  height: 90px;
+  width: 90px;
 }
 
 h2, h3 {
   font-family: var(--ff-Primary);
 }
+
+.Primary-Header {
+  overflow: hidden;  
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.Logo-Main {
+  font-size: 3.5rem;
+  color: var(--navFont);
+  margin-inline: 10px;
+  text-decoration: none;
+
+}
+
+
+.Primary-Navbar {
+  margin: 14px;
+  font-weight: 400; 
+  text-align: right;
+  display: inline;
+  padding-left:1075px;
+}
+
+.Primary-Navbar-Link {
+ 
+  text-decoration: none;
+  color: var(--navFont  );
+  margin-inline: 5px;
+}
+
+.loginbox {
+    position: absolute;
+    color:lightblue;
+    top: 50%;
+    left: 42%;
+    text-align: center;
+    align-items: center;
+  
+  }
+  
+  .background-image {
+    background-image: url('/images/homepagebackground.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+
+  .Primary-Footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 10px;
+  }
+  
+  .footer-row {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .footer-row a {
+    margin-left: 10px;
+    color: var(--navFont);
+    font-family: var(--ff-Primary);
+    font-size: 1.3rem;
+  }
+
 
 
