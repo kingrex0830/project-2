@@ -127,40 +127,4 @@ router.get('/students', withAuth, async (req, res) => {
   }
 });
 
-router.get('/login', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  if (req.session.logged_in) {
-    res.redirect('/homepage');
-    return;
-  }
-
-  res.render('login');
-});
-
-router.get('/profile', (req, res) => {
-  // If the user is already logged in, redirect the request to another route
-  // if (req.session.logged_in) {
-  //   res.redirect('/homepage');
-  //   return;
-  // }
-
-  res.render('profile');
-});
-
-// router.get('/dashboard', async (req, res) => {
-
-//   const studentData = await Student.findAll();
-
-//   const student = studentData.get({ plain: true });
-
-
-//   // If the user is already logged in, redirect the request to another route
-//   // if (req.session.logged_in) {
-//   //   res.redirect('/student');
-//   //   return;
-//   // }
-
-//   res.render('dashboard', {student,});
-// });
-
 module.exports = router;
