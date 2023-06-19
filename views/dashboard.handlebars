@@ -1,139 +1,157 @@
-<h1>Hello there!</h1>
-<h5>This is an example of all the data you may ever need in this project. Use this as you will...</h5>
-<h6>Note: You are able to switch routes by implementing links to those specific routes where u may apply GET/GET(:id)/POST/PULL/DELL</h6>
+<head>
+  <style>
+    body {
+      background-color: #E7E9EB;
+      display: grid;
+      place-items: center;
 
-<div>
-  {{#if users.length}}
-    <h3>Current Users:</h3>
-    <div class="col-md-6 project-list">
-      {{#each users}}
+      #myDIV {
+        height: 2500px;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 10px;
+        background-color: #2196F3;
+        padding: 10px;
+      }
 
-        <div>User id: <strong>{{this.id}} </strong></div>
-        <div>User name: <strong> {{this.name}} </strong></div>
+      #myDIV div {
+        background-color: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        justify-items: center;
+        padding: 20px;
+        font-size: 30px;
+      }
+
+      .course-container {
+        display: grid;
+        justify-items: center;
+        border: 2px solid black;
+      }
+
+      .welcomeUser {
+        display: grid;
+        justify-items: center;
+      }
+
+      .welcomeUser {
+        grid-area: 1 / 1 / span 1 / span 4
+      }
+
+      .courselist {
+        grid-area: 2 / 1 / span 3 / span 1;
+
+      }
+
+      .studentlist {
+        grid-area: 2 / 2 / span 1 / span 3;
+      }
+
+      .studentinfo {
+        grid-area: 3 / 2 / span 2 / span 3;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div id="myDIV">
+
+    <div class="welcomeUser">{{#if users.length}}
+
+      <div class="col-md-6 project-list">
+        {{#each users}}
+        <h3>Welcome {{this.name}}</h3>
+        <div>ID: <strong>{{this.id}} </strong></div>
         <div>User email: <strong> {{this.email}} </strong></div>
         <br>
 
         <p>------------------- Line Here ------------------- </p>
 
-      {{/each}}
+        {{/each}}
+      </div>
+      {{/if}}
+
+      <br>
     </div>
-  {{/if}}
 
-  <br>
-</div>
+    <div class="courselist">
+      <h3>Current Courses</h3>
+      <div class="text-center course-container">
+        {{#each courses}}
+        <p>
+          <button class="btn btn-primary"><a href="/course/{{this.id}}">{{this.course_name}}</a></button>
+        </p>
+        {{/each}}
+      </div>
 
 
-<div>
-  {{#if departments.length}}
-    <h3>Current Users:</h3>
-    <div class="col-md-6 project-list">
-      {{#each departments}}
 
-        <div>Department id: <strong>{{this.id}} </strong></div>
-        <div>Department name: <strong> {{this.department_name}} </strong></div>
-        <br>
-
-        <p>------------------- Line Here ------------------- </p>
-
-      {{/each}}
     </div>
-  {{/if}}
 
-  <br>
-</div>
+    <div class="studentlist"> {{#if students.length}}
+      <h3>Registered Students</h3>
+      <div class="studentSection">
+        <div class="student-dropdown">
+          <select name="students" id="students">
+            {{#each students}}
+            <option value="name"> {{this.first_name}} {{this.last_name}}</option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+    </div>
 
-<div>
-  {{!-- This is one way of using the notations (the other is down below): Here, we use the "this" keyword! --}}
-  {{#if students.length}}
-    <h3>Current students:</h3>
-    <div class="col-md-6 project-list">
+    <div class="studentinfo">
+      <h3>Student Information</h3>
       {{#each students}}
-
-        <div> Student id: <strong>{{this.id}} </strong></div>
-        <div>Student name: <strong> {{this.first_name}} {{this.last_name}} </strong></div>
-        <br>
-
-        <p>------------------- Line Here ------------------- </p>
-
+      <div>Student name: <strong> {{this.first_name}} {{this.last_name}} </strong></div>
+      <div> ID Number: <strong>{{this.id}} </strong></div>
+      <div>course id: <strong>{{grade.course_id}}</strong></div>
+      <div>Grade value: <strong>{{grade.value}}</strong></div>
+      <div>The student got this grade in this course: <strong>{{grade.course.course_name}}</strong></div>
+      <div>This course belongs to this department: <strong>{{grade.course.department.department_name}}</strong></div>
+      <br>
+      <p>------------------- Line Here ------------------- </p>
       {{/each}}
     </div>
-  {{/if}}
+    {{/if}}
+  </div>
 
-  <br>
-</div>
-
-<div>
-  {{!-- This is the second method where we do NOT use the "this" keyword! --}}
-  {{#if grades.length}}
+  {{!--
+  <div>
+    {{#if grades.length}}
     <h3>Current Grades:</h3>
     <div class="col-md-6 project-list">
       {{#each grades as |grade| }}
-      
-        <p>Grade id: <strong>{{grade.id}}</strong></p>
-        <p>Student id: <strong>{{grade.student_id}}</strong></p>
-        <p>course id: <strong>{{grade.course_id}}</strong></p>
-        <p>Grade value: <strong>{{grade.value}}</strong></p>
-        <p>This grade belongs to student: <strong>{{grade.student.first_name}} {{grade.student.last_name}}</strong></p>
-        <p>The student got this grade in this course: <strong>{{grade.course.course_name}}</strong></p>
-        <p>The course's description is as follows: <strong>{{grade.course.description}}</strong></p>
 
+      <p>Grade id: <strong>{{grade.id}}</strong></p>
+      <p>Student id: <strong>{{grade.student_id}}</strong></p>
+      <p>course id: <strong>{{grade.course_id}}</strong></p>
+      <p>Grade value: <strong>{{grade.value}}</strong></p>
+      <p>This grade belongs to student: <strong>{{grade.student.first_name}} {{grade.student.last_name}}</strong></p>
+      <p>The student got this grade in this course: <strong>{{grade.course.course_name}}</strong></p>
+      <p>The course's description is as follows: <strong>{{grade.course.description}}</strong></p>
 
-        <p>This course belongs to this department: <strong>{{grade.course.Department.department_name}}</strong></p>
+      <p>This course belongs to this department: <strong>{{grade.course.department.department_name}}</strong></p>
 
+      {{#if courses.length}}
+      {{#each courses as |course| }}
 
-        {{!-- example of nested queries! EASY--> DOES NOT WORK... IRONICALLY --}}
-        {{#if courses.length}}
-            {{#each courses as |course| }}
-
-              <p>The course belongs to this department: <strong>{{course.id}}</strong></p>
-        
-            {{/each}}
-          </div>
-        {{/if}}
-
-        <p>------------------- Line Here ------------------- </p>
+      <p>The course belongs to this department: <strong>{{course.id}}</strong></p>
 
       {{/each}}
-    
-  {{/if}}
-  
+    </div>
+    {{/if}}
+
+    <p>------------------- Line Here ------------------- </p>
+
+    {{/each}}
+
+    {{/if}}
+
   </div>
 
   <br> <br>
 
-</div>
-
-{{!-- More DATA --}}
-{{!-- Note: Here we are using data in a link to send users into a diff. directory! "/course/id" --}}
-
-
-<div>
-
-  {{#if courses.length}}
-    <div class="col-md-6 project-list">
-      <h3>Current Courses:</h3>
-
-      {{#each courses}}
-        <div class="row mb-2">
-          <div class="col-md-8">
-            <h4><a href="/course/{{this.id}}">{{this.course_name}}</a></h4>
-          </div>
-          <div class="col-md-4">
-            {{!-- btn does not work yet! --}}
-            <button class="btn btn-sm btn-danger" data-id="{{this.id}}">DELETE</button>
-          </div>
-        </div>
-
-          <p>Course description: <strong>{{this.description}}</strong></p>
-
-          <p>This course belongs to this department: <strong>{{this.department.department_name}}</strong></p>
-
-          <p>This department's id is: <strong>{{this.department_id}}</strong></p>
-
-        <p>------------------- Line Here ------------------- </p>
-
-      {{/each}}
-    </div>
-  {{/if}}
-
-</div>
+  </div> --}}
+</body>

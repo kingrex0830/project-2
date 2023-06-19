@@ -1,12 +1,47 @@
-<div> {{course.course_name}} </div>
+<head>
+    <style>
+        body {
+            background-color: #E7E9EB;
+            display: grid;
+            place-items: center;
 
-<hr>
 
-<div> {{course.description}} </div>
+            #myDIV {
+                height: 400px;
+                display: grid;
+                grid-template-columns: auto auto auto auto;
+                gap: 10px;
+                background-color: #2196F3;
+                padding: 10px;
+            }
 
-<hr>
+            #myDIV div {
+                background-color: rgba(255, 255, 255, 0.8);
+                text-align: left;
+                padding: 20px 0;
+                font-size: 30px;
+            }
 
-<div> {{course.department_id}} </div>
+            .course-container {
+                display: grid;
+                justify-items: center;
+                border: 2px solid black;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
 
-<hr>
-<div> {{course.department.department_name}} </div>
+<body>
+    <div id="myDIV">
+        <div class="text-center course-container">
+
+            <div><strong>{{course.course_name}}</strong></div>
+
+            <hr>
+
+            <div>This course belongs to the department of {{course.department.department_name}}.</div>
+
+            <div>{{course.description}} </div>
+        </div>
+</body>

@@ -32,3 +32,10 @@ header,
   font-weight: bold;
   margin-left: -5px;
 }
+
+.studentSection {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: 2%;
+}

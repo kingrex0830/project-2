@@ -1,14 +1,30 @@
-<div class="text-center">
-  <h2>{{name}}</h2>
-  <p>{{{get_emoji}}}</p>
-  <p>{{description}}</p>
-  <p>Created by {{user.name}} on {{format_date date_created}}</p>
-  <p>
-    <span for="img" aria-label="money">💲</span>
-    <span class="dollar-amount">{{format_amount needed_funding}}</span>
-    needed
-  </p>
-  <p>
-    <button class="btn btn-primary">Fund this Project!</button>
-  </p>
+<div>
+
+  {{#if courses.length}}
+  <div class="col-md-6 project-list">
+    <h3>Current Courses:</h3>
+
+    {{#each courses}}
+    <div class="row mb-2">
+      <div class="col-md-8">
+        <h4><a href="/course/{{this.id}}">{{this.course_name}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        {{!-- btn does not work yet! --}}
+        <button class="btn btn-sm btn-danger" data-id="{{this.id}}">DELETE</button>
+      </div>
+    </div>
+
+    <p>Course description: <strong>{{this.description}}</strong></p>
+
+    <p>This course belongs to this department: <strong>{{this.department.department_name}}</strong></p>
+
+    <p>This department's id is: <strong>{{this.department_id}}</strong></p>
+
+    <p>------------------- Line Here ------------------- </p>
+
+    {{/each}}
+  </div>
+  {{/if}}
+
 </div>
