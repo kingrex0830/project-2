@@ -8,47 +8,50 @@
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<main>
+
 <body>
 
-    <header class="Primary-Header">
-      <div class="Primary-Header-Content">
-        <a class="Logo-main" href="/"><strong>Student Manager</strong></a>
-      </div>
-      <div class="primary-container"
+
+  <header class="Primary-Header">
+    <div class="Primary-Header-Content">
+      <a class="Logo-main" href="/"><strong>Student Manager</strong></a>
+    </div>
+    <div class="primary-container">
       <nav class="Primary-Navbar" Aria-Expanded="false" Data-Visible="false">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/api/users/signup">Sign Up</a> 
+        <a href="/api/users/signup">Sign Up</a>
         <button class="no-button" id="logout">logout</button>
         {{else}}
         <a href="/signup" class="Primary-Navbar-Link">Sign Up</a>
         <a href="/login" class="Primary-Navbar-Link">Login</a>
         {{/if}}
       </nav>
-      </div>
-      </body>
-    </header>
+    </div>
+  </header>
 
-   <div class="background-image"></div>
-
-    
+  <main>
+    <div class="background-image">
       <!-- Render the sub layout -->
       {{{ body }}}
-    </main>
-<footer class="Primary-Footer">
-  <div class="footer-row">
-              <a href="#" class="footer-link">About Us</a>           
-              <a href="#" class="footer-link">Contact Us</a>            
-              <a href="#" class="footer-link">FAQ</a>                
-  </div>
-<footer>
-  </div>
 
-  <!-- Render script for logged in users only -->
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
+    </div>
+
+
+  </main>
+  <footer class="Primary-Footer">
+    <div class="footer-row">
+      <a href="#" class="footer-link">About Us</a>
+      <a href="#" class="footer-link">Contact Us</a>
+      <a href="#" class="footer-link">FAQ</a>
+    </div>
+    <footer>
+
+
+      <!-- Render script for logged in users only -->
+      {{#if logged_in}}
+      <script src="/js/logout.js"></script>
+      {{/if}}
 </body>
 
 </html>

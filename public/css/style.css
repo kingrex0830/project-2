@@ -73,6 +73,7 @@ h2, h3 {
   /* margin-inline: 5px; */
   bottom: 30px;
   justify-content: space-between;
+  padding: 3px;
 }
 
 .primary-container {
@@ -99,19 +100,24 @@ h2, h3 {
     height: 100vh;
     margin: 0;
     padding: 0;
+
   }
 
 /* Footer */
   .Primary-Footer {
-    /* position: absolute; */
-    bottom: 0;
+    position: relative;
+    width:100%;
+    bottom: -1;
     right: 0;
+    color: var(--navFont);
     padding: 10px;
+    background-color: antiquewhite;
   }
   
   .footer-row {
     display: flex;
     justify-content: flex-end;
+    align-self: center;
   }
   
   .footer-row a {
