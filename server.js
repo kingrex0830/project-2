@@ -43,5 +43,5 @@ app.use(routes);
 
 // prevents useless query text (loggin to false)
 sequelize.sync({ force: false, logging: false }).then(() => {
-  app.listen(PORT, () => console.log(`Now listening to localhost:${PORT}`));
+  app.listen(PORT, () => console.log(`App listening at http://localhost:${PORT} 🚀`));
 });
