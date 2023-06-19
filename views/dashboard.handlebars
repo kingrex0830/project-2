@@ -30,7 +30,14 @@
       {{#each departments}}
 
         <div>Department id: <strong>{{this.id}} </strong></div>
+
         <div>Department name: <strong> {{this.department_name}} </strong></div>
+
+        <br>
+
+        <button class="btn btn-sm btn-danger departmentDelBtn" data-id="{{this.id}}">DELETE</button>
+    
+
         <br>
 
         <p>------------------- Line Here ------------------- </p>
@@ -41,6 +48,22 @@
 
   <br>
 </div>
+
+<div>
+  <h3>Add new department:</h3>
+
+  <h6>What is the name of the new department you wish to add?</h6>
+  <input id="new-department-name" type="text" placeholder="New department Name..."></input>
+  <br>
+
+  <button id="add-department-btn">Add Department</button>
+  <br> <br>
+</div>
+
+
+
+
+
 
 <div>
   {{!-- This is one way of using the notations (the other is down below): Here, we use the "this" keyword! --}}
@@ -53,6 +76,9 @@
         <div>Student name: <strong> {{this.first_name}} {{this.last_name}} </strong></div>
         <br>
 
+        <button class="btn btn-sm btn-danger studentDelBtn" data-id="{{this.id}}">DELETE</button>
+        <br>
+
         <p>------------------- Line Here ------------------- </p>
 
       {{/each}}
@@ -62,7 +88,25 @@
   <br>
 </div>
 
+
 <div>
+  <h3>Add new student:</h3>
+
+  <h6>Enter the first name:</h6>
+  <input id="new-student-firstname" type="text" placeholder="First Name..."></input>
+  <br>
+
+  <h6>Enter the last name:</h6>
+  <input id="new-student-lastname" type="text" placeholder="Last Name..."></input>
+  <br>
+
+  <button id="add-student-btn">Add Student</button>
+  <br> <br>
+</div>
+
+
+<div>
+
   {{!-- This is the second method where we do NOT use the "this" keyword! --}}
   {{#if grades.length}}
     <h3>Current Grades:</h3>
@@ -81,13 +125,10 @@
         <p>------------------- Line Here ------------------- </p>
 
       {{/each}}
+    </div>
     
   {{/if}}
-  
-  </div>
-
   <br> <br>
-
 </div>
 
 {{!-- More DATA --}}
@@ -107,7 +148,7 @@
             <h4><a href="/course/{{this.id}}">{{this.course_name}}</a></h4>
           </div>
           <div class="col-md-4">
-            <button class="btn btn-sm btn-danger delBtn" data-id="{{this.id}}">DELETE</button>
+            <button class="btn btn-sm btn-danger courseDelBtn" data-id="{{this.id}}">DELETE</button>
           </div>
         </div>
 
@@ -147,11 +188,26 @@
   </div>
 
 
+  <div>
+    <h3>Edit Course:</h3>
+
+    <h6>Which course would you like to edit?</h6>
+    <select id="edit-course-dropdown">
+      <option value="">Select a course</option>
+      {{#each courses}}
+      <option value="{{this.id}}">{{this.course_name}}</option>
+      {{/each}}
+    </select>
+
+  </div>
+  <br>
+
+  <div id="edit-course-form-container"></div>
+  <br> <br>
 
 
-
-  <script src="./js/dashboard.js"></script>
+  
 
 </div>
 
-
+<script src="./js/dashboard.js"></script>
