@@ -13,7 +13,7 @@ const withAuth = require('../utils/auth');
 router.get('/', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/homepage');
+    res.redirect('/dashboard');
     return;
   }
   res.render('login');
@@ -23,16 +23,11 @@ router.get('/', (req, res) => {
 router.get('/login', (req, res) => {
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
-    res.redirect('/homepage');
+    res.redirect('/dashboard');
     return;
   }
 
   res.render('login');
-});
-
-// homepage routes
-router.get('/homepage', withAuth, (req, res) => {
-  res.render('homepage');
 });
 
 // dashboard url: page displays specified model data! ((ADD WITH AUTHINTICATION!!!!!))
@@ -75,11 +70,21 @@ router.get('/dashboard', withAuth, async (req, res) => {
     });
     const grades = gradesData.map((grade) => grade.get({ plain: true }));
 
+    // Sort the grades array by student name
+    const sortedGrades = grades.slice().sort((a, b) => {
+      const nameA =
+        `${a.student.first_name} ${a.student.last_name}`.toLowerCase();
+      const nameB =
+        `${b.student.first_name} ${b.student.last_name}`.toLowerCase();
+      return nameA.localeCompare(nameB);
+    });
+
     res.render('dashboard', {
       courses,
       students,
       departments,
       grades,
+      sortedGrades,
       users,
       logged_in: req.session.logged_in,
     });
@@ -125,6 +130,74 @@ router.get('/students', withAuth, async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
+});
+
+// // get student by id
+// router.get('/student/:id', async (req, res) => {
+//   try {
+//     const studentData = await Student.findByPk(req.params.id);
+
+//     const student = studentData.get({ plain: true });
+
+//     res.render('students', {
+//       student,
+//       logged_in: req.session.logged_in,
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+router.get('/api/grades', async (req, res) => {
+  try {
+    const { student_id } = req.query;
+
+    const student = await Student.findOne({
+      where: { id: student_id },
+      attributes: ['id'],
+    });
+
+    if (!student) {
+      // Handle the case when the student is not found
+      return res.status(404).json({ error: 'Student not found' });
+    }
+
+    const grades = await Grades.findAll({
+      where: { student_id: student.id },
+      include: [
+        {
+          model: Student,
+          attributes: ['first_name', 'last_name'],
+        },
+        {
+          model: Course,
+          attributes: ['course_name', 'description'],
+          include: {
+            model: Department,
+            attributes: ['department_name'],
+          },
+        },
+      ],
+    });
+
+    res.json(grades);
+  } catch (err) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+router.get('/contact', (req, res) => {
+  res.render('contact');
+});
+
+router.get('/signup', (req, res) => {
+  // If the user is already logged in, redirect the request to another route
+  if (req.session.logged_in) {
+    res.redirect('/dashboard');
+    return;
+  }
+
+  res.render('signup');
 });
 
 module.exports = router;
