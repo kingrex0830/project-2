@@ -2,6 +2,124 @@
 <h5>This is an example of all the data you may ever need in this project. Use this as you will...</h5>
 <h6>Note: You are able to switch routes by implementing links to those specific routes where u may apply GET/GET(:id)/POST/PULL/DELL</h6>
 
+<style>
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th,
+  td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+    border-radius: 5%;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  tr:hover {
+    background-color: #ddd;
+  }
+
+
+  #student-name{
+    width: 80%;
+    margin: 10px 0;
+  }
+
+  .space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #student-search-btn{
+    margin: 10px 0;
+    height: fit-content;
+  }
+
+</style>
+
+<br><br><br>
+
+<h5>Student Table example</h5>
+<br>
+
+<div class="space-between">
+
+  <select id="student-name">
+  <option value="">Search and edit student grades</option>
+  {{#each students}}
+  <option value="{{this.id}}">{{this.first_name}} {{this.last_name}}</option>
+  {{/each}}
+  </select>
+
+  <button id="student-search-btn"> Search Student </button>
+
+</div>
+
+<br>
+
+<div id="grades-table-container"></div>
+
+<br>
+
+<div id="add-grade-form">
+  <select id="student-select">
+    <option value="" selected disabled>Select Student</option>
+  </select>
+  <select id="course-select">
+    <option value="" selected disabled>Select Course</option>
+  </select>
+  <input type="text" id="grade-value" placeholder="Grade Value">
+  <button id="add-grade-button">Add Grade</button>
+</div>
+
+
+<br><br><br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Course Name</th>
+      <th>Grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#if grades.length}}
+      {{#each sortedGrades as |grade| }}
+        <tr>
+          <td>{{grade.student.first_name}} {{grade.student.last_name}}</td>
+          <td><a href="/course/{{grade.course_id}}"> {{grade.course.course_name}} </a> </td>
+          <td>{{grade.value}}</td>
+        </tr>
+      {{/each}}
+    {{else}}
+      <tr>
+        <td colspan="3">No grades found</td>
+      </tr>
+    {{/if}}
+  </tbody>
+</table>
+
+
+
+<br><br><br>
+
+
+
+
+
+
+
 <div>
   {{#if users.length}}
     <h3>Current Users:</h3>
@@ -61,10 +179,6 @@
 </div>
 
 
-
-
-
-
 <div>
   {{!-- This is one way of using the notations (the other is down below): Here, we use the "this" keyword! --}}
   {{#if students.length}}
@@ -117,6 +231,8 @@
         <p>Student id: <strong>{{grade.student_id}}</strong></p>
         <p>course id: <strong>{{grade.course_id}}</strong></p>
         <p>Grade value: <strong>{{grade.value}}</strong></p>
+
+        {{!-- Additional info that is not DIRECTLY related --}}
         <p>This grade belongs to student: <strong>{{grade.student.first_name}} {{grade.student.last_name}}</strong></p>
         <p>The student got this grade in this course: <strong>{{grade.course.course_name}}</strong></p>
         <p>The course's description is as follows: <strong>{{grade.course.description}}</strong></p>
@@ -130,6 +246,9 @@
   {{/if}}
   <br> <br>
 </div>
+
+
+
 
 {{!-- More DATA --}}
 {{!-- Note: Here we are using data in a link to send users into a diff. directory! "/course/id" --}}
