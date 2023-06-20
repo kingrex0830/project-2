@@ -4,6 +4,8 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
+const chalk = require('chalk');
+
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
@@ -43,5 +45,5 @@ app.use(routes);
 
 // prevents useless query text (loggin to false)
 sequelize.sync({ force: false, logging: false }).then(() => {
-  app.listen(PORT, () => console.log(`Now listening to localhost:${PORT}`));
+  app.listen(PORT, () => console.log(chalk.green(`App listening at http://localhost:${PORT} 🚀`)));
 });

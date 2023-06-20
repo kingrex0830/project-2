@@ -10,6 +10,12 @@ const departmentData = [
   {
     department_name: 'Physics',
   },
+  {
+    department_name: 'Biology',
+  },
+  {
+    department_name: 'Chemistry',
+  },
   // Add more department data HERE
 ];
 

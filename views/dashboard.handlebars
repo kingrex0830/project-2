@@ -1,32 +1,213 @@
-<h1>Hello there...</h1>
+<h1>Hello there!</h1>
+<h5>This is an example of all the data you may ever need in this project. Use this as you will...</h5>
+<h6>Note: You are able to switch routes by implementing links to those specific routes where u may apply GET/GET(:id)/POST/PULL/DELL</h6>
 
-<p> Our courses are: {{courses}}</p>
+<div>
+  {{#if users.length}}
+    <h3>Current Users:</h3>
+    <div class="col-md-6 project-list">
+      {{#each users}}
 
-  {{#if courses.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Courses:</h3>
+        <div>User id: <strong>{{this.id}} </strong></div>
+        <div>User name: <strong> {{this.name}} </strong></div>
+        <div>User email: <strong> {{this.email}} </strong></div>
+        <br>
 
-    {{#each courses as |course|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/course/{{course.id}}">{{course.course_name}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{course.id}}">DELETE</button>
-      </div>
+        <p>------------------- Line Here ------------------- </p>
 
-      <div> {{course.description}} </div>
-
-      <hr>
-
-       <div> {{course.department_id}} </div>
-
-       <hr>
-       <div> {{course.department.department_name}} </div>
+      {{/each}}
     </div>
-    {{/each}}
-  </div>
   {{/if}}
 
+  <br>
+</div>
 
-<script src="/js/courses.js"></script>
+
+<div>
+  {{#if departments.length}}
+    <h3>Current Departments:</h3>
+    <div class="col-md-6 project-list">
+      {{#each departments}}
+
+        <div>Department id: <strong>{{this.id}} </strong></div>
+
+        <div>Department name: <strong> {{this.department_name}} </strong></div>
+
+        <br>
+
+        <button class="btn btn-sm btn-danger departmentDelBtn" data-id="{{this.id}}">DELETE</button>
+    
+
+        <br>
+
+        <p>------------------- Line Here ------------------- </p>
+
+      {{/each}}
+    </div>
+  {{/if}}
+
+  <br>
+</div>
+
+<div>
+  <h3>Add new department:</h3>
+
+  <h6>What is the name of the new department you wish to add?</h6>
+  <input id="new-department-name" type="text" placeholder="New department Name..."></input>
+  <br>
+
+  <button id="add-department-btn">Add Department</button>
+  <br> <br>
+</div>
+
+
+
+
+
+
+<div>
+  {{!-- This is one way of using the notations (the other is down below): Here, we use the "this" keyword! --}}
+  {{#if students.length}}
+    <h3>Current students:</h3>
+    <div class="col-md-6 project-list">
+      {{#each students}}
+
+        <div> Student id: <strong>{{this.id}} </strong></div>
+        <div>Student name: <strong> {{this.first_name}} {{this.last_name}} </strong></div>
+        <br>
+
+        <button class="btn btn-sm btn-danger studentDelBtn" data-id="{{this.id}}">DELETE</button>
+        <br>
+
+        <p>------------------- Line Here ------------------- </p>
+
+      {{/each}}
+    </div>
+  {{/if}}
+
+  <br>
+</div>
+
+
+<div>
+  <h3>Add new student:</h3>
+
+  <h6>Enter the first name:</h6>
+  <input id="new-student-firstname" type="text" placeholder="First Name..."></input>
+  <br>
+
+  <h6>Enter the last name:</h6>
+  <input id="new-student-lastname" type="text" placeholder="Last Name..."></input>
+  <br>
+
+  <button id="add-student-btn">Add Student</button>
+  <br> <br>
+</div>
+
+
+<div>
+
+  {{!-- This is the second method where we do NOT use the "this" keyword! --}}
+  {{#if grades.length}}
+    <h3>Current Grades:</h3>
+    <div class="col-md-6 project-list">
+      {{#each grades as |grade| }}
+      
+        <p>Grade id: <strong>{{grade.id}}</strong></p>
+        <p>Student id: <strong>{{grade.student_id}}</strong></p>
+        <p>course id: <strong>{{grade.course_id}}</strong></p>
+        <p>Grade value: <strong>{{grade.value}}</strong></p>
+        <p>This grade belongs to student: <strong>{{grade.student.first_name}} {{grade.student.last_name}}</strong></p>
+        <p>The student got this grade in this course: <strong>{{grade.course.course_name}}</strong></p>
+        <p>The course's description is as follows: <strong>{{grade.course.description}}</strong></p>
+        <p>This course belongs to this department: <strong>{{grade.course.department.department_name}}</strong></p>
+
+        <p>------------------- Line Here ------------------- </p>
+
+      {{/each}}
+    </div>
+    
+  {{/if}}
+  <br> <br>
+</div>
+
+{{!-- More DATA --}}
+{{!-- Note: Here we are using data in a link to send users into a diff. directory! "/course/id" --}}
+
+
+<div>
+
+  {{#if courses.length}}
+    <div class="col-md-6 project-list">
+      <h3>Current Courses:</h3>
+
+      {{#each courses}}
+        <div class="row mb-2">
+          <div class="col-md-8">
+
+            <h4><a href="/course/{{this.id}}">{{this.course_name}}</a></h4>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-sm btn-danger courseDelBtn" data-id="{{this.id}}">DELETE</button>
+          </div>
+        </div>
+
+          <p>Course description: <strong>{{this.description}}</strong></p>
+
+          <p>This course belongs to this department: <strong>{{this.department.department_name}}</strong></p>
+
+          <p>This department's id is: <strong>{{this.department_id}}</strong></p>
+
+        <p>------------------- Line Here ------------------- </p>
+
+      {{/each}}
+    </div>
+  {{/if}}
+
+  <div>
+    <h3>Add new course:</h3>
+
+    <h6>What is the name of the new course you wish to add?</h6>
+    <input id="new-course-name" type="text" placeholder="New course Name..."></input>
+    <br>
+
+    <h6>Please describe this new course:</h6>
+    <input id="new-course-description" type="text" placeholder="New course description..."></input>
+    <br>
+
+    <h6>To which department does this new course belong?</h6>
+    <select id="new-course-department">
+      <option value="">Select a department</option>
+    </select>
+    <br>
+    <br>
+
+
+    <button id="add-course-btn">Add Course</button>
+    <br> <br>
+  </div>
+
+
+  <div>
+    <h3>Edit Course:</h3>
+
+    <h6>Which course would you like to edit?</h6>
+    <select id="edit-course-dropdown">
+      <option value="">Select a course</option>
+      {{#each courses}}
+      <option value="{{this.id}}">{{this.course_name}}</option>
+      {{/each}}
+    </select>
+
+  </div>
+  <br>
+
+  <div id="edit-course-form-container"></div>
+  <br> <br>
+
+
+  
+
+</div>
+
+<script src="./js/dashboard.js"></script>
