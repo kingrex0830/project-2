@@ -6,7 +6,8 @@
       place-items: center;
 
       #myDIV {
-        height: 2500px;
+        width: 80vw;
+        height: 300vh;
         display: grid;
         grid-template-columns: auto auto auto auto;
         gap: 10px;
@@ -28,14 +29,7 @@
         border: 2px solid black;
       }
 
-      .welcomeUser {
-        display: grid;
-        justify-items: center;
-      }
 
-      .welcomeUser {
-        grid-area: 1 / 1 / span 1 / span 4
-      }
 
       .courselist {
         grid-area: 2 / 1 / span 3 / span 1;
@@ -49,6 +43,19 @@
       .studentinfo {
         grid-area: 3 / 2 / span 2 / span 3;
       }
+
+      .btn {
+        background-color: rgb(255, 255, 255);
+        color: black;
+        border: 2px solid #008CBA;
+      }
+
+      .btn:hover {
+        background-color: #4a33f6;
+        color: white;
+        transform: scale(1.5)
+      }
+
     }
   </style>
 </head>
@@ -56,72 +63,50 @@
 <body>
   <div id="myDIV">
 
-    <div class="welcomeUser">{{#if users.length}}
-
-      <div class="col-md-6 project-list">
-        {{#each users}}
-        <h3>Welcome {{this.name}}</h3>
-        <div>ID: <strong>{{this.id}} </strong></div>
-        <div>User email: <strong> {{this.email}} </strong></div>
-        <br>
-
-        <p>------------------- Line Here ------------------- </p>
-
-        {{/each}}
-      </div>
-      {{/if}}
-
-      <br>
-    </div>
-
     <div class="courselist">
       <h3>Current Courses</h3>
       <div class="text-center course-container">
         {{#each courses}}
         <p>
-          <button class="btn btn-primary"><a href="/course/{{this.id}}">{{this.course_name}}</a></button>
+          <button class="btn btn-secondary"><a href="/course/{{this.id}}">{{this.course_name}}</a></button>
         </p>
         {{/each}}
       </div>
-
-
-
     </div>
 
     <div class="studentlist"> {{#if students.length}}
       <h3>Registered Students</h3>
       <div class="studentSection">
-        <div class="student-dropdown">
-          <select name="students" id="students">
-            {{#each students}}
-            <option value="name"> {{this.first_name}} {{this.last_name}}</option>
-            {{/each}}
-          </select>
-        </div>
+        {{#each students}}
+        {{!-- use id value of user to target specific student --}}
+        <p>
+          <button class="btn btn-secondary"><a href="/studentInfo/{{this.id}}">
+              {{this.first_name}}{{this.last_name}}</a></button>
+        </p>
+        {{/each}}
       </div>
     </div>
 
+    {{!-- render student information for the id selected in student dropdown... might need to use a helper --}}
     <div class="studentinfo">
       <h3>Student Information</h3>
       {{#each students}}
       <div>Student name: <strong> {{this.first_name}} {{this.last_name}} </strong></div>
       <div> ID Number: <strong>{{this.id}} </strong></div>
-      <div>course id: <strong>{{grade.course_id}}</strong></div>
-      <div>Grade value: <strong>{{grade.value}}</strong></div>
-      <div>The student got this grade in this course: <strong>{{grade.course.course_name}}</strong></div>
+      <div>Currently enrolled in course with id: <strong>{{grade.course_id}}</strong></div>
       <div>This course belongs to this department: <strong>{{grade.course.department.department_name}}</strong></div>
+      <div>Grade value: <strong>{{grade.value}}</strong></div>
+      <div>Final grade value: <strong>{{grade.course.course_name}}</strong></div>
       <br>
       <p>------------------- Line Here ------------------- </p>
       {{/each}}
     </div>
     {{/if}}
-  </div>
 
-  {{!--
-  <div>
     {{#if grades.length}}
-    <h3>Current Grades:</h3>
-    <div class="col-md-6 project-list">
+
+    <div class=" project-list">
+      <h3>Student current Grades:</h3>
       {{#each grades as |grade| }}
 
       <p>Grade id: <strong>{{grade.id}}</strong></p>
@@ -153,5 +138,5 @@
 
   <br> <br>
 
-  </div> --}}
+  </div>
 </body>

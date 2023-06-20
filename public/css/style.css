@@ -1,9 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Schibsted+Grotesk&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&family=Raleway:wght@500&display=swap');
 
 
 
 body {
-  font-family: 'Schibsted Grotesk', sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 header,
