@@ -4,13 +4,12 @@
 
 <style>
   table {
-    border-collapse: collapse;
     width: 100%;
   }
 
   th,
   td {
-    border: 1px solid black;
+    border: 2px solid black;
     padding: 8px;
     text-align: center;
     border-radius: 5%;
@@ -28,6 +27,9 @@
     background-color: #ddd;
   }
 
+  input, select, button {
+    box-shadow: 0 0 5px blueviolet;
+  }
 
   #student-name{
     width: 80%;
@@ -61,7 +63,7 @@
   {{/each}}
   </select>
 
-  <button id="student-search-btn"> Search Student </button>
+  <button id="student-search-btn" class="btn btn-sm btn-primary"> Search Student </button>
 
 </div>
 
@@ -79,7 +81,7 @@
     <option value="" selected disabled>Select Course</option>
   </select>
   <input type="text" id="grade-value" placeholder="Grade Value">
-  <button id="add-grade-button">Add Grade</button>
+  <button id="add-grade-button" class="btn btn-sm btn-primary">Add Grade</button>
 </div>
 
 
@@ -174,7 +176,7 @@
   <input id="new-department-name" type="text" placeholder="New department Name..."></input>
   <br>
 
-  <button id="add-department-btn">Add Department</button>
+  <button id="add-department-btn" class="btn btn-sm btn-primary">Add Department</button>
   <br> <br>
 </div>
 
@@ -214,7 +216,7 @@
   <input id="new-student-lastname" type="text" placeholder="Last Name..."></input>
   <br>
 
-  <button id="add-student-btn">Add Student</button>
+  <button id="add-student-btn" class="btn btn-sm btn-primary">Add Student</button>
   <br> <br>
 </div>
 
@@ -302,7 +304,7 @@
     <br>
 
 
-    <button id="add-course-btn">Add Course</button>
+    <button id="add-course-btn" class="btn btn-sm btn-primary">Add Course</button>
     <br> <br>
   </div>
 

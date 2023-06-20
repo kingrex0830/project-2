@@ -404,7 +404,7 @@ function renderGradesTable(grades) {
           : 'N/A';
         const courseNameCell = document.createElement('td');
         const courseLink = document.createElement('a');
-        courseLink.href = `/course/${course ? course.course_id : ''}`;
+        courseLink.href = `/course/${course ? grade.course_id : ''}`;
         courseLink.textContent = course ? course.course_name : 'N/A';
         courseNameCell.appendChild(courseLink);
         const gradeCell = document.createElement('td');
@@ -596,10 +596,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Fetch students and courses data when the page loads
-  
-  'DOMContentLoaded', () => {
+
   fetchStudentsAndCourses();
-  };
 });
 
 // Event listener for student search button
