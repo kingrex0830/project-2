@@ -112,14 +112,15 @@
       <h3>Student Information:</h3>
       {{#each grades as |grade| }}
 
-      <p>During this study period <strong>{{grade.student.first_name}} {{grade.student.last_name}}</strong> has a grade
-        Id number of: </p>
-      <p><strong>{{grade.id}}</strong></p>
-      <p>Their total grade value is <strong>{{grade.value}}</strong>.</p>
-      <p>They got this grade in the following course: <strong>{{grade.course.course_name}}</strong></p>
+      {{!-- <p>During this study period <strong>{{grade.student.first_name}} {{grade.student.last_name}}</strong> has a
+        grade
+        Id number of: </p> --}}
+      {{!-- <p><strong>{{grade.id}}</strong></p> --}}
+      <p>Their total grade is <strong>{{grade.value}}</strong>.</p>
+      <p>This was their grade in the course: <strong>{{grade.course.course_name}}</strong></p>
+      {{!-- <p>With ID number: <strong>{{grade.course_id}}</strong></p> --}}
       <p>The course's description is as follows: <strong>{{grade.course.description}}</strong></p>
-      <p>With ID number: <strong>{{grade.course_id}}</strong></p>
-      <p>This course belongs to this department: <strong>{{grade.course.department.department_name}}</strong></p>
+      <p>This course belongs to the department: <strong>{{grade.course.department.department_name}}</strong></p>
 
       {{#if courses.length}}
       {{#each courses as |course| }}
