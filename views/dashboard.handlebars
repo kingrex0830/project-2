@@ -6,12 +6,12 @@
       place-items: center;
 
       #myDIV {
-        width: 80vw;
-        height: 300vh;
+        width: auto;
+        height: auto;
         display: grid;
         grid-template-columns: auto auto auto auto;
         gap: 10px;
-        background-color: #2196F3;
+        background-color: #1d2329;
         padding: 10px;
       }
 
@@ -20,8 +20,10 @@
         text-align: center;
         justify-items: center;
         padding: 20px;
-        font-size: 30px;
+        font-size: 20px;
+
       }
+
 
       .course-container {
         display: grid;
@@ -32,16 +34,21 @@
 
 
       .courselist {
-        grid-area: 2 / 1 / span 3 / span 1;
+        grid-area: 1 / 1 / span 1 / span 1;
 
       }
 
       .studentlist {
-        grid-area: 2 / 2 / span 1 / span 3;
+        grid-area: 1 / 2 / span 1 / span 3;
       }
 
       .studentinfo {
-        grid-area: 3 / 2 / span 2 / span 3;
+        grid-area: 2 / 1 / span 2 / span 2;
+      }
+
+      .gradeinfo {
+        grid-area: 2 / 3 / span 2 / span 2;
+
       }
 
       .btn {
@@ -51,7 +58,7 @@
       }
 
       .btn:hover {
-        background-color: #4a33f6;
+        background-color: #4532db;
         color: white;
         transform: scale(1.5)
       }
@@ -80,8 +87,8 @@
         {{#each students}}
         {{!-- use id value of user to target specific student --}}
         <p>
-          <button class="btn btn-secondary"><a href="/studentInfo/{{this.id}}">
-              {{this.first_name}}{{this.last_name}}</a></button>
+          <button class="btn btn-secondary">
+            {{this.first_name}} {{this.last_name}}</a></button>
         </p>
         {{/each}}
       </div>
@@ -89,34 +96,29 @@
 
     {{!-- render student information for the id selected in student dropdown... might need to use a helper --}}
     <div class="studentinfo">
-      <h3>Student Information</h3>
+      <h3>Student ID </h3>
       {{#each students}}
       <div>Student name: <strong> {{this.first_name}} {{this.last_name}} </strong></div>
       <div> ID Number: <strong>{{this.id}} </strong></div>
-      <div>Currently enrolled in course with id: <strong>{{grade.course_id}}</strong></div>
-      <div>This course belongs to this department: <strong>{{grade.course.department.department_name}}</strong></div>
-      <div>Grade value: <strong>{{grade.value}}</strong></div>
-      <div>Final grade value: <strong>{{grade.course.course_name}}</strong></div>
       <br>
-      <p>------------------- Line Here ------------------- </p>
+      <p>-------------------------------------- </p>
       {{/each}}
     </div>
     {{/if}}
 
     {{#if grades.length}}
 
-    <div class=" project-list">
-      <h3>Student current Grades:</h3>
+    <div class="gradeinfo">
+      <h3>Student Information:</h3>
       {{#each grades as |grade| }}
 
-      <p>Grade id: <strong>{{grade.id}}</strong></p>
-      <p>Student id: <strong>{{grade.student_id}}</strong></p>
-      <p>course id: <strong>{{grade.course_id}}</strong></p>
-      <p>Grade value: <strong>{{grade.value}}</strong></p>
-      <p>This grade belongs to student: <strong>{{grade.student.first_name}} {{grade.student.last_name}}</strong></p>
-      <p>The student got this grade in this course: <strong>{{grade.course.course_name}}</strong></p>
+      <p>During this study period <strong>{{grade.student.first_name}} {{grade.student.last_name}}</strong> has a grade
+        Id number of: </p>
+      <p><strong>{{grade.id}}</strong></p>
+      <p>Their total grade value is <strong>{{grade.value}}</strong>.</p>
+      <p>They got this grade in the following course: <strong>{{grade.course.course_name}}</strong></p>
       <p>The course's description is as follows: <strong>{{grade.course.description}}</strong></p>
-
+      <p>With ID number: <strong>{{grade.course_id}}</strong></p>
       <p>This course belongs to this department: <strong>{{grade.course.department.department_name}}</strong></p>
 
       {{#if courses.length}}
@@ -128,7 +130,7 @@
     </div>
     {{/if}}
 
-    <p>------------------- Line Here ------------------- </p>
+    <p>-------------------------------------- </p>
 
     {{/each}}
 
