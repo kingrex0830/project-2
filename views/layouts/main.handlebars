@@ -20,11 +20,10 @@
       <nav class="Primary-Navbar" Aria-Expanded="false" Data-Visible="false">
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/api/users/signup">Sign Up</a>
+        <a href="/dashboard">Sign Up</a>
         <button class="no-button" id="logout">logout</button>
         {{else}}
         <a href="/signup" class="Primary-Navbar-Link">Sign Up</a>
-        <a href="/login" class="Primary-Navbar-Link">Login</a>
         {{/if}}
       </nav>
     </div>

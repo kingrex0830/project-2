@@ -204,5 +204,14 @@ h2, h3 {
   
   }
 
+  /* sign up form */
+  .signupform {
+    position: absolute;
+    color:lightblue;
+    top: 45%;
+    left: 41%;
+  
+  }
+
 
 
