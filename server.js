@@ -4,12 +4,14 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
+const chalk = require('chalk');
+
 
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 // Set up Handlebars.js engine with custom helpers
 const hbs = exphbs.create({ helpers });
@@ -43,5 +45,5 @@ app.use(routes);
 
 // prevents useless query text (loggin to false)
 sequelize.sync({ force: false, logging: false }).then(() => {
-  app.listen(PORT, () => console.log(`App listening at http://localhost:${PORT} 🚀`));
+  app.listen(PORT, () => console.log(chalk.green(`App listening at http://localhost:${PORT} 🚀`)));
 });
