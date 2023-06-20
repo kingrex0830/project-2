@@ -1,0 +1,231 @@
+<style>
+  table { width: 100%; } th, td { border: 2px solid black; padding: 8px;
+  text-align: center; border-radius: 5%; } th { background-color: #f2f2f2; }
+  tr:nth-child(even) { background-color: #f9f9f9; } tr:hover { background-color:
+  #ddd; } input, select, button { box-shadow: 0 0 5px blueviolet; }
+  #student-name{ width: 80%; margin: 10px 0; } .space-between { display: flex;
+  justify-content: space-between; align-items: center; } #student-search-btn{
+  margin: 10px 0; height: fit-content; } body { background-color: #E7E9EB;
+  display: grid; margin: 20px; } .grid-container { display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;
+  align-items: center; text-align: center; } .department-item { border: 1px
+  solid #ddd; padding: 10px; } .department-item h4 { margin-bottom: 10px; }
+  .department-item button { margin-top: 10px; } .add-department-form {
+  margin-top: 30px; text-align: center; } .add-department-form input {
+  margin-bottom: 10px; } .student-item { border: 1px solid #ddd; padding: 10px;
+  } .student-item h4 { margin-bottom: 10px; } .student-item button { margin-top:
+  10px; } .add-student-form { margin-top: 30px; text-align: center; }
+  .add-student-form input { margin-bottom: 10px; } .course-item { border: 1px
+  solid #ddd; padding: 10px; } .course-item h4 { margin-bottom: 10px; }
+  .course-item button { margin-top: 10px; } .add-course-form, .edit-course-form
+  { margin-top: 30px; text-align: center; } .add-course-form input,
+  .add-course-form select, .edit-course-form input, .edit-course-form select {
+  margin-bottom: 10px; }
+
+</style>
+
+<br /><br /><br />
+
+<h5>Student Table</h5>
+<br />
+
+<div class='space-between'>
+
+  <select id='student-name'>
+    <option value=''>Search and edit student grades</option>
+    {{#each students}}
+      <option value='{{this.id}}'>{{this.first_name}}
+        {{this.last_name}}</option>
+    {{/each}}
+  </select>
+
+  <button id='student-search-btn' class='btn btn-sm btn-primary'>
+    Search Student
+  </button>
+
+</div>
+
+<br />
+
+<div id='grades-table-container'></div>
+
+<br />
+
+<div id='add-grade-form'>
+  <select id='student-select'>
+    <option value='' selected disabled>Select Student</option>
+  </select>
+  <select id='course-select'>
+    <option value='' selected disabled>Select Course</option>
+  </select>
+  <input type='text' id='grade-value' placeholder='Grade Value' />
+  <button id='add-grade-button' class='btn btn-sm btn-primary'>Add Grade</button>
+</div>
+
+<br /><br /><br />
+
+<table>
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Course Name</th>
+      <th>Grade</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#if grades.length}}
+      {{#each sortedGrades as |grade|}}
+        <tr>
+          <td>{{grade.student.first_name}} {{grade.student.last_name}}</td>
+          <td><a href='/course/{{grade.course_id}}'>
+              {{grade.course.course_name}}
+            </a>
+          </td>
+          <td>{{grade.value}}</td>
+        </tr>
+      {{/each}}
+    {{else}}
+      <tr>
+        <td colspan='3'>No grades found</td>
+      </tr>
+    {{/if}}
+  </tbody>
+</table>
+
+<br /><br /><br />
+
+<div>
+  {{#if departments.length}}
+    <h3>Current Departments:</h3>
+    <div class='grid-container'>
+      {{#each departments}}
+        <div class='department-item'>
+          <div>Department id: <strong>{{this.id}}</strong></div>
+          <div>Department name: <strong>{{this.department_name}}</strong></div>
+          <br />
+          <button
+            class='btn btn-sm btn-danger departmentDelBtn'
+            data-id='{{this.id}}'
+          >DELETE</button>
+          <br />
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+  <br /><br /><br />
+</div>
+
+<div class='add-department-form'>
+  <h3>Add new department:</h3>
+  <h6>What is the name of the new department you wish to add?</h6>
+  <input
+    id='new-department-name'
+    type='text'
+    placeholder='New department Name...'
+  />
+  <br />
+  <button id='add-department-btn' class='btn btn-sm btn-primary'>Add Department</button>
+  <br /><br />
+</div>
+
+<div>
+  {{#if students.length}}
+    <h3>Current students:</h3>
+    <div class='grid-container'>
+      {{#each students}}
+        <div class='student-item'>
+          <div>Student id: <strong>{{this.id}}</strong></div>
+          <div>Student name:
+            <strong>{{this.first_name}} {{this.last_name}}</strong></div>
+          <br />
+          <button
+            class='btn btn-sm btn-danger studentDelBtn'
+            data-id='{{this.id}}'
+          >DELETE</button>
+          <br />
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+  <br />
+  <br />
+</div>
+
+<div class='add-student-form'>
+  <h3>Add new student:</h3>
+  <h6>Enter the first name:</h6>
+  <input id='new-student-firstname' type='text' placeholder='First Name...' />
+  <br />
+  <h6>Enter the last name:</h6>
+  <input id='new-student-lastname' type='text' placeholder='Last Name...' />
+  <br />
+  <button id='add-student-btn' class='btn btn-sm btn-primary'>Add Student</button>
+  <br ><br >
+</div>
+
+<div>
+  {{#if courses.length}}
+    <div class='grid-container'>
+      <h3>Current Courses:</h3>
+      {{#each courses}}
+        <div class='course-item'>
+          <div class='row mb-2'>
+            <div class='col-md-8'>
+              <h4><a href='/course/{{this.id}}'>{{this.course_name}}</a></h4>
+            </div>
+            <div class='col-md-4'>
+              <button
+                class='btn btn-sm btn-danger courseDelBtn'
+                data-id='{{this.id}}'
+              >DELETE</button>
+            </div>
+          </div>
+          <p>Course description: <strong>{{this.description}}</strong></p>
+          <p>This course belongs to this department:
+            <strong>{{this.department.department_name}}</strong></p>
+          <p>This department's id is:
+            <strong>{{this.department_id}}</strong></p>
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+
+  <div class='add-course-form'>
+    <h3>Add new course:</h3>
+    <h6>What is the name of the new course you wish to add?</h6>
+    <input id='new-course-name' type='text' placeholder='New course Name...' />
+    <br />
+    <h6>Please describe this new course:</h6>
+    <input
+      id='new-course-description'
+      type='text'
+      placeholder='New course description...'
+    />
+    <br />
+    <h6>To which department does this new course belong?</h6>
+    <select id='new-course-department'>
+      <option value=''>Select a department</option>
+    </select>
+    <br />
+    <br />
+    <button id='add-course-btn' class='btn btn-sm btn-primary'>Add Course</button>
+    <br /><br />
+  </div>
+
+  <div class='edit-course-form'>
+    <h3>Edit Course:</h3>
+    <h6>Which course would you like to edit?</h6>
+    <select id='edit-course-dropdown'>
+      <option value=''>Select a course</option>
+      {{#each courses}}
+        <option value='{{this.id}}'>{{this.course_name}}</option>
+      {{/each}}
+    </select>
+  </div>
+  <br />
+
+  <div id='edit-course-form-container'></div>
+  <br /><br />
+</div>
+
+<script src='./js/dashboard.js'></script>
