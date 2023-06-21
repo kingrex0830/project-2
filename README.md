@@ -1,21 +1,44 @@
 # Student Manager
 
-![studentmanager](https://github.com/kingrex0830/student-manager/assets/120323086/1c34e82a-df78-4c45-8735-0e8c1defeaf5)
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+
+## Live URL
+
+https://best-ever-student-manager-c65168e4e5e9.herokuapp.com/
 
 ## Description
 
 Student Manager is an app that allows you to access and edit information for multiple students and classes from a teacher profile easily and efficiently.
 
-## Usage
+## Screenshot
 
-For the official app, you can follow the link to our Heroku page here: *insert link*
+![studentmanager](https://github.com/kingrex0830/student-manager/assets/120323086/1c34e82a-df78-4c45-8735-0e8c1defeaf5)
 
-For launching directly from VSCode:
-1. Ensure you have Node.js installed
-2. Execute "node server.js" in your terminal
-3. Follow the link to localhost:3002 in the prompt
+## Table of Contents
 
-Once on our site, you have the option to sign in to your account or sign up for one. After signing in, you will have access to a blank template from which you can build your classroom.
+- [Student Manager](#student-manager)
+  - [Live URL](#live-url)
+  - [Description](#description)
+  - [Screenshot](#screenshot)
+  - [Table of Contents](#table-of-contents)
+  - [Features](#features)
+  - [License](#license)
+  - [Credits](#credits)
+
+## Features
+
+- When the user opens the website, they are presented with the landing page to allow them to login or signup
+- Once logged in, the user is presented with current school information, including departments, courses, students, and their grades
+- When navigating to the departments section, the user is presented with all departments and the option to add more or delete departments
+- When navigating to the courses section, the user is presented with all courses and the option to add more, or edit or delete courses
+- When navigating to the students section, the user is presented with all students and the option to add more or delete students
+- When navigating to the grades section, the user is presented with all students and their grades. The user is then able to look for students to get their grades, edit or delete their grades
+- Overall, the app allows the user to swiftly and efficiently manage students
+- Note that user cannot login withou first signing in
+
+## License
+
+MIT
 
 ## Credits
 
@@ -24,18 +47,3 @@ Once on our site, you have the option to sign in to your account or sign up for 
 - Chris Massicotte: https://github.com/massicottec
 - Mae Ahmad: https://github.com/maeahmad
 - Muhammad Atrach: https://github.com/ThatOneMHMD
- 
-## User Story
-
-- WHEN I open website
-- THEN I am presented with the landing page to allow me to log in. 
-- WHEN I enter my username and password
-- THEN the sign in page loads presenting current class information.
-- WHEN I click on class list
-- THEN I can view, create, edit and delete student’s information. 
-- WHEN I search student by name
-- THEN I am presented with history information based on student’s name. 
-- IF student does not exist in the database
-- THEN a message says “No user with this name”
-- WHEN I sign out
-- THEN I am redirected to the landing page.
