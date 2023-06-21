@@ -19,11 +19,11 @@ Once on our site, you have the option to sign in to your account or sign up for 
 
 ## Credits
 
-Yoshi Cea: https://github.com/kingrex0830
-Melanie Wang: https://github.com/melwang1
-Chris Massicotte: https://github.com/massicottec
-Mae Ahmad: https://github.com/maeahmad
-Muhammad Atrach: https://github.com/ThatOneMHMD
+- Yoshi Cea: https://github.com/kingrex0830
+- Melanie Wang: https://github.com/melwang1
+- Chris Massicotte: https://github.com/massicottec
+- Mae Ahmad: https://github.com/maeahmad
+- Muhammad Atrach: https://github.com/ThatOneMHMD
  
 ## User Story
 
@@ -38,4 +38,4 @@ Muhammad Atrach: https://github.com/ThatOneMHMD
 •	IF student does not exist in the database
 •	THEN a message says “No user with this name”
 •	WHEN I sign out
-•	THEN I am redirected to the landing page. 
+•	THEN I am redirected to the landing page.
