@@ -16,25 +16,24 @@ Student Manager is an app that allows you to access and edit information for mul
 
 ## Table of Contents
 
-- [Student Manager](#student-manager)
-  - [Live URL](#live-url)
-  - [Description](#description)
-  - [Screenshot](#screenshot)
-  - [Table of Contents](#table-of-contents)
-  - [Features](#features)
-  - [License](#license)
-  - [Credits](#credits)
+- [Live URL](#live-url)
+- [Description](#description)
+- [Screenshot](#screenshot)
+- [Table of Contents](#table-of-contents)
+- [Features](#features)
+- [License](#license)
+- [Credits](#credits)
 
 ## Features
 
-- When the user opens the website, they are presented with the landing page to allow them to login or signup
+- When the user opens the website, they are presented with the landing page to allow them to log in or signup
 - Once logged in, the user is presented with current school information, including departments, courses, students, and their grades
-- When navigating to the departments section, the user is presented with all departments and the option to add more or delete departments
-- When navigating to the courses section, the user is presented with all courses and the option to add more, or edit or delete courses
-- When navigating to the students section, the user is presented with all students and the option to add more or delete students
+- When navigating to the departments; section, the user is presented with all departments and the option to add more or delete departments
+- When navigating to the courses section, the user is presented with all courses and the option to add more or edit or delete courses
+- When navigating to the students' section, the user is presented with all students and the option to add more or delete students
 - When navigating to the grades section, the user is presented with all students and their grades. The user is then able to look for students to get their grades, edit or delete their grades
 - Overall, the app allows the user to swiftly and efficiently manage students
-- Note that user cannot login withou first signing in
+- Note that the user cannot log in without first signing in
 
 ## License
 
