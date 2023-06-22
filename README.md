@@ -34,6 +34,7 @@ Student Manager is an app that allows you to access and edit information for mul
 - When navigating to the grades section, the user is presented with all students and their grades. The user is then able to look for students to get their grades, edit or delete their grades
 - Overall, the app allows the user to swiftly and efficiently manage students
 - Note that the user cannot log in without first signing in
+- On the developer's end, when running the app from root files, Chalk library package was used to differentiate between "good" or "bad" terminal responses with green and red colours respectively
 
 ## License
 
